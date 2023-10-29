@@ -1,33 +1,27 @@
-import React from 'react'
 
-export default function List() {
-    const to_do = [
-        {
-            title: 'Tarefa um',
-            time: '01:00:00'
-        },
-        {
-            title: 'Tarefa dois',
-            time: '01:30:00'
-        },
-        {
-            title: 'Tarefa Três',
-            time: '01:50:00'
-        }
-    ];
+import style from "./List.module.scss"
+import Item from './Item';
+import { ITarefa } from "../../types/tarefa";
 
-    const listItems = to_do.map((item, index) => {
+interface Props {
+    tarefas : ITarefa[],
+    selecionaTarefa: (tarefaSelecionada:ITarefa) => void
+}
+
+export default function List({tarefas, selecionaTarefa}: Props) {
+
+
+    const listItems = tarefas.map((item) => {
         return (
-            <li key={index}>
-                <h3>{item.title}</h3>
-                <aside>{item.time}</aside>
-            </li>
+            <Item {...item} key={item.id} selecionaTarefa={selecionaTarefa}/> //Desestrutura o objeto com spredd e disponibiliza todos os atributos
         )
     })
 
     return (
-        <aside>
-            <h2>Estudos do dia</h2>
+        <aside className={style.listaTarefas}>
+            <h2>
+                Estudos do dia
+            </h2>
             <ul>
                 {listItems}
             </ul>
