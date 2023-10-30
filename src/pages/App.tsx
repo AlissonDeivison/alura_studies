@@ -25,7 +25,7 @@ function App() {
         tarefas={to_do}
         selecionaTarefa = {selecionaTarefa}
       />
-      <Timer />
+      <Timer selecionado={selecionado} />
     </div>
   );
 }
